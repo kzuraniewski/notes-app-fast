@@ -4,7 +4,9 @@ import './styles/reset.css';
 import './styles/main.css';
 
 const template = html<AppRoot>`
-	<div id="app"></div>
+	<div id="app">
+		<app-bar />
+	</div>
 `;
 
 @customElement({
