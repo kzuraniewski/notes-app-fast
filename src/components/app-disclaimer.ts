@@ -5,7 +5,7 @@ import {
 	html,
 } from '@microsoft/fast-element';
 import { css } from '../lib/fast';
-import { infoIcon } from '../icons';
+import { infoIcon } from '../lib/icons';
 import classNames from 'classnames';
 
 const template = html<AppDisclaimer>`

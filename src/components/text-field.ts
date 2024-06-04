@@ -4,7 +4,7 @@ import {
 	customElement,
 	html,
 } from '@microsoft/fast-element';
-import { searchIcon } from '../icons';
+import { searchIcon } from '../lib/icons';
 import { css } from '../lib/fast';
 
 const template = html<TextField>`

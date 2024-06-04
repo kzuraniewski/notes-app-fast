@@ -8,7 +8,7 @@ import {
 import './components';
 import { css } from './lib/fast';
 import { CompositionMode } from './components/composition-panel/composition-panel.utils';
-import { addIcon } from './icons';
+import { addIcon } from './lib/icons';
 
 type ViewMode = 'edit' | 'add' | 'empty' | 'list';
 

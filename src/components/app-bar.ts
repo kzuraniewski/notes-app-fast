@@ -1,5 +1,5 @@
 import { FASTElement, customElement, html } from '@microsoft/fast-element';
-import { fileIcon } from '../icons';
+import { fileIcon } from '../lib/icons';
 import { css } from '../lib/fast';
 
 const styles = css`
