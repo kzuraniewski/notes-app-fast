@@ -1,4 +1,10 @@
-import { FASTElement, customElement, html } from '@microsoft/fast-element';
+import {
+	FASTElement,
+	customElement,
+	html,
+	observable,
+	when,
+} from '@microsoft/fast-element';
 import './components';
 import { css } from './lib/fast';
 import { addIcon, infoIcon } from './icons';
@@ -11,52 +17,19 @@ const template = html<AppRoot>`
 			<app-container>
 				<text-field placeholder="Search notes..."></text-field>
 
-				<app-button full id="add-note">Add new</app-button>
+				${when(
+					(x) => !x.isCompositionMode,
+					html<AppRoot>`
+						<app-button full @click="${(x) => x.queryNewNote()}">
+							Add new
+						</app-button>
+					`
+				)}
 
-				<div
-					class="CompositionPanel screen-wide hidden"
-					id="note-composition-panel"
-				>
-					<app-container>
-						<div class="CompositionPanel__header">
-							<h2 class="CompositionPanel__title">
-								Add new note
-							</h2>
-
-							<app-button
-								variant="text"
-								id="note-composition-panel-cancel"
-							>
-								Cancel
-							</app-button>
-						</div>
-
-						<div class="CompositionPanel__form">
-							<input
-								class="CompositionPanel__field"
-								id="note-composition-panel-title"
-								type="text"
-								placeholder="Note title..."
-							/>
-
-							<div class="CompositionPanel__submit-field">
-								<textarea
-									class="CompositionPanel__field"
-									id="note-composition-panel-content"
-									placeholder="Type your note..."
-								></textarea>
-
-								<app-button
-									class="CompositionPanel__submit-button"
-									disabled
-									id="note-composition-panel-add-button"
-								>
-									Add
-								</app-button>
-							</div>
-						</div>
-					</app-container>
-				</div>
+				<composition-panel
+					mode="${(x) => (x.isCompositionMode ? 'edit' : 'closed')}"
+					@cancel="${(x) => x.closeComposition()}"
+				></composition-panel>
 
 				<div class="NotePanel">
 					<div class="Disclaimer hidden" id="empty-disclaimer">
@@ -97,4 +70,18 @@ const styles = css``;
 	template,
 	styles,
 })
-export class AppRoot extends FASTElement {}
+export class AppRoot extends FASTElement {
+	@observable isCompositionMode: boolean = false;
+
+	closeComposition() {
+		this.isCompositionMode = false;
+	}
+
+	queryNewNote() {
+		this.isCompositionMode = true;
+	}
+
+	addNote(note) {
+		console.log('new note', note);
+	}
+}

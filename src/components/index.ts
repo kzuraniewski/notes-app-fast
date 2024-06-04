@@ -3,3 +3,4 @@ import './icon-adornment';
 import './app-bar';
 import './app-button';
 import './text-field';
+import './composition-panel/composition-panel';

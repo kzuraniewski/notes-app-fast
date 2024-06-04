@@ -17,6 +17,7 @@ const template = html<AppButton>`
 				{ 'Button--text': x.variant === 'text' },
 				{ 'Button--full': x.full },
 			])}"
+		?disabled="${(x) => x.disabled}"
 	>
 		<slot></slot>
 	</button>
@@ -107,4 +108,5 @@ const variantConverter: ValueConverter = {
 export class AppButton extends FASTElement {
 	@attr({ converter: variantConverter }) variant: ButtonVariant = 'primary';
 	@attr({ mode: 'boolean' }) full: boolean = false;
+	@attr({ mode: 'boolean' }) disabled: boolean = false;
 }
