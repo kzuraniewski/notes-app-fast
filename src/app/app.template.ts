@@ -45,10 +45,11 @@ const template = html<AppRoot>`
 					<ul class="NotePanel__list">
 						${repeat(
 							(x) => x.notes,
-							html<Note>`
+							(x) => html<Note>`
 								<note-card
-									:title=${(x) => x.title}
-									:content=${(x) => x.content}
+									:title=${(note) => note.title}
+									:content=${(note) => note.content}
+									@delete=${(note) => x.deleteNote(note)}
 								></note-card>
 							`
 						)}
