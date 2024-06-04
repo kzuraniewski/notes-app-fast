@@ -36,6 +36,10 @@ export class AppRoot extends FASTElement {
 		console.log('new note', note);
 	}
 
+	editNote(note: Note) {
+		this.viewMode = 'edit';
+	}
+
 	deleteNote(note: Note) {
 		const noteIndex = this.notes.indexOf(note);
 

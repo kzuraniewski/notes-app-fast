@@ -49,6 +49,7 @@ const template = html<AppRoot>`
 								<note-card
 									title="${(note) => note.title}"
 									content="${(note) => note.content}"
+									@edit="${(note) => x.editNote(note)}"
 									@delete="${(note) => x.deleteNote(note)}"
 								></note-card>
 							`
