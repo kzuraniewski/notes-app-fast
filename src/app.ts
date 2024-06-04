@@ -17,7 +17,7 @@ const template = html<AppRoot>`
 					class="CompositionPanel screen-wide hidden"
 					id="note-composition-panel"
 				>
-					<div class="Container">
+					<app-container>
 						<div class="CompositionPanel__header">
 							<h2 class="CompositionPanel__title">
 								Add new note
@@ -55,7 +55,7 @@ const template = html<AppRoot>`
 								</app-button>
 							</div>
 						</div>
-					</div>
+					</app-container>
 				</div>
 
 				<div class="NotePanel">
