@@ -17,7 +17,7 @@ const template = html<NoteCard>`
 
 				<button
 					class="NoteCard__action"
-					@click=${(x) => x.$emit('delete')}
+					@click="${(x) => x.$emit('delete')}"
 				>
 					<img src="${deleteIcon}" role="presentation" />
 				</button>
