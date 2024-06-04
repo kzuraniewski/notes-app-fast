@@ -10,7 +10,7 @@ import { css } from './lib/fast';
 import { addIcon, infoIcon } from './icons';
 
 const template = html<AppRoot>`
-	<div id="app">
+	<div class="App">
 		<app-bar></app-bar>
 
 		<main class="AppContent">
