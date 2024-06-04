@@ -1,6 +1,6 @@
 import { html, when, repeat } from '@microsoft/fast-element';
 import { addIcon } from '../lib/icons';
-import Note from '../note';
+import Note from '../models/note';
 import { AppRoot } from './app';
 import { getCompositionMode } from './app.utils';
 

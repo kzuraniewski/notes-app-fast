@@ -5,7 +5,7 @@ import {
 } from '@microsoft/fast-element';
 import '../components';
 import { css } from '../lib/fast';
-import Note from '../note';
+import Note from '../models/note';
 import template from './app.template';
 import { ViewMode, mockDate } from './app.utils';
 
