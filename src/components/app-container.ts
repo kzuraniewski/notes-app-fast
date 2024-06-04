@@ -1,4 +1,5 @@
-import { FASTElement, css, customElement, html } from '@microsoft/fast-element';
+import { FASTElement, customElement, html } from '@microsoft/fast-element';
+import { css } from '../lib/fast';
 
 const template = html<AppContainer>`
 	<div class="Container">

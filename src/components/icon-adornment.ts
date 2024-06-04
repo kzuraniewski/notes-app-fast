@@ -1,10 +1,10 @@
 import {
 	FASTElement,
 	attr,
-	css,
 	customElement,
 	html,
 } from '@microsoft/fast-element';
+import { css } from '../lib/fast';
 
 const template = html<IconAdornment>`
 	<div class="IconAdornment">

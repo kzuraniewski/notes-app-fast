@@ -1,5 +1,6 @@
-import { FASTElement, css, customElement, html } from '@microsoft/fast-element';
+import { FASTElement, customElement, html } from '@microsoft/fast-element';
 import { fileIcon } from '../icons';
+import { css } from '../lib/fast';
 
 const styles = css`
 	.AppBar {
