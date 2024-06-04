@@ -20,9 +20,7 @@ const template = html<AppRoot>`
 					</icon-adornment>
 				</div>
 
-				<button class="Button Button--full" id="add-note">
-					Add new
-				</button>
+				<app-button full id="add-note">Add new</app-button>
 
 				<div
 					class="CompositionPanel screen-wide hidden"
@@ -34,12 +32,12 @@ const template = html<AppRoot>`
 								Add new note
 							</h2>
 
-							<button
-								class="Button Button--text"
+							<app-button
+								variant="text"
 								id="note-composition-panel-cancel"
 							>
 								Cancel
-							</button>
+							</app-button>
 						</div>
 
 						<div class="CompositionPanel__form">
@@ -57,13 +55,13 @@ const template = html<AppRoot>`
 									placeholder="Type your note..."
 								></textarea>
 
-								<button
-									class="Button CompositionPanel__submit-button"
-									id="note-composition-panel-add-button"
+								<app-button
+									class="CompositionPanel__submit-button"
 									disabled
+									id="note-composition-panel-add-button"
 								>
 									Add
-								</button>
+								</app-button>
 							</div>
 						</div>
 					</div>
@@ -87,14 +85,11 @@ const template = html<AppRoot>`
 							Add a note to keep track of your learnings.
 						</p>
 
-						<button
-							class="Button Button--secondary"
-							id="disclaimer-button"
-						>
+						<app-button variant="secondary" id="disclaimer-button">
 							<icon-adornment icon="${addIcon}">
 								Add note
 							</icon-adornment>
-						</button>
+						</app-button>
 					</div>
 
 					<ul class="NotePanel__list" id="note-renderer"></ul>
