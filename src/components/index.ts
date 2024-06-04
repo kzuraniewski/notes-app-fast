@@ -5,3 +5,4 @@ import './app-button';
 import './text-field';
 import './composition-panel/composition-panel';
 import './circled-icon';
+import './app-disclaimer';

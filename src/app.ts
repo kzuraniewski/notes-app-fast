@@ -7,7 +7,21 @@ import {
 } from '@microsoft/fast-element';
 import './components';
 import { css } from './lib/fast';
-import { addIcon, infoIcon } from './icons';
+import { CompositionMode } from './components/composition-panel/composition-panel.utils';
+import { addIcon } from './icons';
+
+type ViewMode = 'edit' | 'add' | 'empty' | 'list';
+
+const getCompositionMode = (viewMode: ViewMode): CompositionMode => {
+	switch (viewMode) {
+		case 'add':
+			return 'new';
+		case 'edit':
+			return 'edit';
+		default:
+			return 'closed';
+	}
+};
 
 const template = html<AppRoot>`
 	<div class="App">
@@ -18,7 +32,7 @@ const template = html<AppRoot>`
 				<text-field placeholder="Search notes..."></text-field>
 
 				${when(
-					(x) => !x.isCompositionMode,
+					(x) => x.viewMode === 'list',
 					html<AppRoot>`
 						<app-button full @click="${(x) => x.queryNewNote()}">
 							Add new
@@ -27,29 +41,25 @@ const template = html<AppRoot>`
 				)}
 
 				<composition-panel
-					mode="${(x) => (x.isCompositionMode ? 'edit' : 'closed')}"
+					mode="${(x) => getCompositionMode(x.viewMode)}"
 					@cancel="${(x) => x.closeComposition()}"
 				></composition-panel>
 
 				<div class="NotePanel">
-					<div class="Disclaimer hidden" id="empty-disclaimer">
-						<circled-icon
-							class="Disclaimer__icon"
-							icon="${infoIcon}"
-						></circled-icon>
-
-						<h2 class="Disclaimer__title">No notes yet</h2>
-
-						<p class="Disclaimer__description">
-							Add a note to keep track of your learnings.
-						</p>
-
-						<app-button variant="secondary" id="disclaimer-button">
+					<app-disclaimer
+						title="No notes yet"
+						description="Add a note to keep track of your learnings."
+						open="${(x) => x.viewMode === 'empty'}"
+					>
+						<app-button
+							variant="secondary"
+							@click="${(x) => x.queryNewNote()}"
+						>
 							<icon-adornment icon="${addIcon}">
 								Add note
 							</icon-adornment>
 						</app-button>
-					</div>
+					</app-disclaimer>
 
 					<ul class="NotePanel__list" id="note-renderer"></ul>
 				</div>
@@ -66,14 +76,15 @@ const styles = css``;
 	styles,
 })
 export class AppRoot extends FASTElement {
-	@observable isCompositionMode: boolean = false;
+	@observable notes: string[] = [];
+	@observable viewMode: ViewMode = 'empty';
 
 	closeComposition() {
-		this.isCompositionMode = false;
+		this.viewMode = this.notes.length ? 'list' : 'empty';
 	}
 
 	queryNewNote() {
-		this.isCompositionMode = true;
+		this.viewMode = 'add';
 	}
 
 	addNote(note) {
