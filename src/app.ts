@@ -33,15 +33,10 @@ const template = html<AppRoot>`
 
 				<div class="NotePanel">
 					<div class="Disclaimer hidden" id="empty-disclaimer">
-						<div class="CircledIcon Disclaimer__icon">
-							<div class="CircledIcon__inner">
-								<img
-									class="CircledIcon__icon"
-									src="${infoIcon}"
-									role="presentation"
-								/>
-							</div>
-						</div>
+						<circled-icon
+							class="Disclaimer__icon"
+							icon="${infoIcon}"
+						></circled-icon>
 
 						<h2 class="Disclaimer__title">No notes yet</h2>
 
