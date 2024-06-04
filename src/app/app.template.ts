@@ -10,11 +10,11 @@ const template = html<AppRoot>`
 
 		<main class="AppContent">
 			<app-container>
-				<text-field placeholder="Search notes..."></text-field>
-
 				${when(
 					(x) => x.viewMode === 'list',
 					html<AppRoot>`
+						<text-field placeholder="Search notes..."></text-field>
+
 						<app-button full @click="${(x) => x.queryNewNote()}">
 							Add new
 						</app-button>
