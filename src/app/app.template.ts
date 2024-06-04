@@ -1,29 +1,8 @@
-import {
-	FASTElement,
-	customElement,
-	html,
-	observable,
-	repeat,
-	when,
-} from '@microsoft/fast-element';
-import './components';
-import { css } from './lib/fast';
-import { CompositionMode } from './components/composition-panel/composition-panel.utils';
-import { addIcon } from './lib/icons';
-import Note from './note';
-
-type ViewMode = 'edit' | 'add' | 'empty' | 'list';
-
-const getCompositionMode = (viewMode: ViewMode): CompositionMode => {
-	switch (viewMode) {
-		case 'add':
-			return 'new';
-		case 'edit':
-			return 'edit';
-		default:
-			return 'closed';
-	}
-};
+import { html, when, repeat } from '@microsoft/fast-element';
+import { addIcon } from '../lib/icons';
+import Note from '../note';
+import { AppRoot } from './app';
+import { getCompositionMode } from './app.utils';
 
 const template = html<AppRoot>`
 	<div class="App">
@@ -80,32 +59,4 @@ const template = html<AppRoot>`
 	</div>
 `;
 
-const styles = css``;
-
-const mockDate = new Date(966, 4, 14);
-
-@customElement({
-	name: 'app-root',
-	template,
-	styles,
-})
-export class AppRoot extends FASTElement {
-	@observable notes = [
-		new Note('Note 1', 'Body 1', mockDate),
-		new Note('Note 2', 'Body 2', mockDate),
-		new Note('Note 3', 'Body 3', mockDate),
-	];
-	@observable viewMode: ViewMode = 'list';
-
-	closeComposition() {
-		this.viewMode = this.notes.length ? 'list' : 'empty';
-	}
-
-	queryNewNote() {
-		this.viewMode = 'add';
-	}
-
-	addNote(note) {
-		console.log('new note', note);
-	}
-}
+export default template;
