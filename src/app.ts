@@ -1,24 +1,15 @@
 import { FASTElement, customElement, html } from '@microsoft/fast-element';
 import './components';
 import { css } from './lib/fast';
-import { addIcon, infoIcon, searchIcon } from './icons';
+import { addIcon, infoIcon } from './icons';
 
 const template = html<AppRoot>`
 	<div id="app">
 		<app-bar></app-bar>
 
 		<main class="AppContent">
-			<div class="Container">
-				<div class="TextField">
-					<icon-adornment icon="${searchIcon}">
-						<input
-							type="text"
-							id="search-bar"
-							class="TextField__input"
-							placeholder="Search notes..."
-						/>
-					</icon-adornment>
-				</div>
+			<app-container>
+				<text-field placeholder="Search notes..."></text-field>
 
 				<app-button full id="add-note">Add new</app-button>
 
@@ -94,7 +85,7 @@ const template = html<AppRoot>`
 
 					<ul class="NotePanel__list" id="note-renderer"></ul>
 				</div>
-			</div>
+			</app-container>
 		</main>
 	</div>
 `;
