@@ -3,12 +3,14 @@ import {
 	customElement,
 	html,
 	observable,
+	repeat,
 	when,
 } from '@microsoft/fast-element';
 import './components';
 import { css } from './lib/fast';
 import { CompositionMode } from './components/composition-panel/composition-panel.utils';
 import { addIcon } from './lib/icons';
+import Note from './note';
 
 type ViewMode = 'edit' | 'add' | 'empty' | 'list';
 
@@ -61,7 +63,17 @@ const template = html<AppRoot>`
 						</app-button>
 					</app-disclaimer>
 
-					<ul class="NotePanel__list" id="note-renderer"></ul>
+					<ul class="NotePanel__list">
+						${repeat(
+							(x) => x.notes,
+							html<Note>`
+								<note-card
+									:title=${(x) => x.title}
+									:content=${(x) => x.content}
+								></note-card>
+							`
+						)}
+					</ul>
 				</div>
 			</app-container>
 		</main>
@@ -70,14 +82,20 @@ const template = html<AppRoot>`
 
 const styles = css``;
 
+const mockDate = new Date(966, 4, 14);
+
 @customElement({
 	name: 'app-root',
 	template,
 	styles,
 })
 export class AppRoot extends FASTElement {
-	@observable notes: string[] = [];
-	@observable viewMode: ViewMode = 'empty';
+	@observable notes = [
+		new Note('Note 1', 'Body 1', mockDate),
+		new Note('Note 2', 'Body 2', mockDate),
+		new Note('Note 3', 'Body 3', mockDate),
+	];
+	@observable viewMode: ViewMode = 'list';
 
 	closeComposition() {
 		this.viewMode = this.notes.length ? 'list' : 'empty';

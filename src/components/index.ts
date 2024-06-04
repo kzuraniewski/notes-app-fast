@@ -6,3 +6,4 @@ import './text-field';
 import './composition-panel/composition-panel';
 import './circled-icon';
 import './app-disclaimer';
+import './note-card/note-card';
